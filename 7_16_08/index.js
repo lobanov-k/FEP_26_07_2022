@@ -107,10 +107,29 @@ const obj1 = {
 // add isNew: true
 
 // not pure
-obj1[isNew] = true;
+// obj1[isNew] = true;
 
 const obj2 = Object.assign(obj1, { isNew: true });
 
 // pure
 const pureObj = Object.assign({}, obj1, { isNew: true });
 const pureObj2 = { ...obj1, isNew: true };
+
+function copyObj(obj) {
+  // создаем новый объект
+  const newObj = {};
+
+  for (key in obj) {
+    if (typeof obj[key] === "object" && obj[key] !== null) {
+      // если свойство объекта является вложенным объектом, то передаем в рекурсивный вызов
+      newObj[key] = copyObj(obj[key]);
+    } else {
+      // если это обычное свойство, то просто копируем
+      newObj[key] = obj[key];
+    }
+  }
+
+  return newObj;
+}
+
+const newObj = copyObj(obj1);
