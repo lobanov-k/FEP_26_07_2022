@@ -87,3 +87,142 @@ const inputBtn = document.getElementById("btn");
 inputBtn.addEventListener("click", function () {
   console.log(this.previousElementSibling.value);
 });
+
+document
+  .getElementById("somebutton")
+  .addEventListener("focus", function (event) {
+    console.log(event);
+  });
+
+document.addEventListener("keydown", function (event) {
+  console.log(event);
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  console.log(event);
+});
+
+// CODE for 1 dropdown
+// document.querySelector(".dropDownlabel").addEventListener("click", function () {
+//   this.closest(".dropDownWrapper")
+//     .querySelector(".dropDown")
+//     .classList.toggle("open");
+// });
+
+// FOR ALL DROPDOWNS
+document.querySelectorAll(".dropDownlabel").forEach(function (element) {
+  element.addEventListener("click", function () {
+    this.closest(".dropDownWrapper")
+      .querySelector(".dropDown")
+      .classList.toggle("open");
+  });
+});
+
+document
+  .querySelector(".dropDownWrapper")
+  .addEventListener("click", function (event) {
+    console.log("CLICK ON WRAPPER");
+    console.log(event);
+    console.log(this);
+  });
+
+document
+  .querySelector(".dropDownWrapper span")
+  .addEventListener("click", function (event) {
+    console.log("CLICK ON SPAN");
+    console.log(event.target);
+    console.log(this);
+  });
+
+document.body.addEventListener("click", function ({ target }) {
+  console.log("CLICK ON BODY");
+  console.log(target);
+  console.log(this);
+});
+
+const link = document.getElementById("link");
+
+link.addEventListener("click", function (event) {
+  event.preventDefault();
+});
+
+link.addEventListener("mouseover", function (event) {
+  console.log("mouseover");
+});
+link.addEventListener("mouseout", function (event) {
+  console.log("mouseout");
+});
+
+document.getElementById("someForm").addEventListener("click", function (event) {
+  event.preventDefault();
+});
+
+document.body.addEventListener("click", function (event) {
+  console.log(event.altKey);
+});
+
+document;
+
+// DOMASHKI RULES
+// 1. "use strict";
+// 2. Names of variables - camelCase
+// BAD: a, b, ... abc...,
+// GOOD: letter, number1, number2, string1 ... someString
+
+// 3. Names of functions
+// BAD: a, b, ... abc...,
+// GOOD: doSmth, getInfo, setInfo, calculateSomething
+
+// Most optimal code
+// DRY - dont repeat yourself
+// KISS Keep it Simple and Stupid
+
+navigator.geolocation.getCurrentPosition(function (position) {
+  console.log("широта", position.coords.latitude);
+  console.log("долгота", position.coords.longitude);
+  console.log(position);
+});
+
+function fnBrowserDetect() {
+  let userAgent = navigator.userAgent;
+  let browserName;
+
+  if (userAgent.match(/chrome|chromium|crios/i)) {
+    browserName = "chrome";
+  } else if (userAgent.match(/firefox|fxios/i)) {
+    browserName = "firefox";
+  } else if (userAgent.match(/safari/i)) {
+    browserName = "safari";
+  } else if (userAgent.match(/opr\//i)) {
+    browserName = "opera";
+  } else if (userAgent.match(/edg/i)) {
+    browserName = "edge";
+  } else {
+    browserName = "No browser detection";
+  }
+}
+
+const images = ["./imgs/o-img.png", "./imgs/x-img.png"];
+let page = 0;
+
+// код для работы слайдера должен быть инкапсулирован
+document.querySelector(".content").innerHTML = `<img src="${images[page]}"/>`;
+// использовать создание элемента document.createElement
+
+document.getElementById("next").addEventListener("click", function () {
+  document.querySelector(".content").innerHTML = `<img src="${
+    images[++page]
+  }"/>`;
+});
+
+// использовать работу с атрибутом src картинки
+document.getElementById("prev").addEventListener("click", function () {
+  // добавить код, чтобы сделать слайдер бесконечным
+  // ИЛИ
+  // блокировать кнопки если юзер дошел до крайнего элемента 0 - prev:blocked , last - next:blocked
+  document.querySelector(".content").innerHTML = `<img src="${
+    images[--page]
+  }"/>`;
+});
+
+// * реализовать listner для next/prev через делегирование событий с помощью одного addEventListener

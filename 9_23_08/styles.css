@@ -1,3 +1,15 @@
 .bg-blue {
   background-color: aqua;
 }
+
+.dropDown {
+  display: none;
+}
+
+.dropDown.open {
+  display: block;
+}
+
+a:hover {
+  color: red;
+}
