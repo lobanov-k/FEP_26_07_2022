@@ -226,3 +226,11 @@ document.getElementById("prev").addEventListener("click", function () {
 });
 
 // * реализовать listner для next/prev через делегирование событий с помощью одного addEventListener
+let initScroll = 0;
+
+// window.addEventListener("scroll", function (event) {
+//   const scrollDifference = this.scrollY - initScroll;
+//   initScroll = this.scrollY;
+//   console.log(scrollDifference);
+//   // return scrollDifference;
+// });

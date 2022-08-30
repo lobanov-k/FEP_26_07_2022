@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My text</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <form id="someForm" class="form" name="persona">
+      <label>
+        Enter your first name
+        <input name="firstName" type="text" />
+      </label>
+      <label>
+        Enter your last name
+        <input required name="lastName" type="text" />
+      </label>
+      <div>
+        Select your gender:
+        <label>
+          Male
+          <input name="gender" type="radio" value="male" />
+        </label>
+        <label>
+          Female
+          <input name="gender" type="radio" value="female" />
+        </label>
+      </div>
+      <label class="womanSize">
+        Woman's size
+        <select name="size">
+          <option value="35">35</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+        </select>
+      </label>
+      <label class="menSize">
+        Man's size
+        <select name="size">
+          <option value="41">41</option>
+          <option value="43">43</option>
+          <option value="45">45</option>
+        </select>
+      </label>
+      <textarea name="comment"></textarea>
+      <div id="commentLength"></div>
+      <button type="submit"><b>Submit</b></button>
+  </body>
+  <script src="./index.js"></script>
+</html>
