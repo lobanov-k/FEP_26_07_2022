@@ -1,0 +1,35 @@
+.form_input-items {
+  display: block;
+}
+
+.input-through {
+  text-decoration: line-through;
+}
+
+.input-item {
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+.close:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.close {
+  margin-left: 5px;
+}
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
+.button-add {
+  background: blue;
+  color: white;
+}
+
+.button-add:hover {
+  cursor: pointer;
+  box-shadow: inset;
+}
