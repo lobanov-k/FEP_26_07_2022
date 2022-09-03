@@ -13,17 +13,20 @@ const images = [
 
 let page = 0;
 const content = document.querySelector('.content');
-content.innerHTML = `<img src ="${images[page]}"/>`;
+const buttons = document.querySelector('.buttons');
+const newImg = document.createElement('img');
 
-document.addEventListener('click', function(event) {
-    if (event.target.closest('.next')) {
-        if (page >= 9) {page = -1}
-        content.innerHTML = `<img src ="${images[++page]}"/>`;   
-    } else if (event.target.closest('.previous')) { 
+
+buttons.addEventListener('click', function(event) {
+    const element = event.target;
+    if (element.classList.contains('next')) {
+        if (page >= 9) {page = -1}  
+        newImg.setAttribute('src', `${images[++page]}`);  
+    } else if (element.classList.contains('previous')) { 
         if (page <= 0) {page = 10}
-        content.innerHTML = `<img src ="${images[--page]}"/>`;  
+        newImg.setAttribute('src', `${images[--page]}`)  
     }
-    console.log(page) //Для проверки индекса изображения
+    content.appendChild(newImg);
 })
 
 
