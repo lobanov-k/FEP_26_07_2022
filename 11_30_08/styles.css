@@ -6,9 +6,11 @@
   text-decoration: line-through;
 }
 
-.input-item {
+.inputWrapper {
+  display: flex;
+  align-items: center;
   list-style-type: none;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .close:hover {
@@ -32,4 +34,13 @@
 .button-add:hover {
   cursor: pointer;
   box-shadow: inset;
+}
+
+.classError {
+  border: 1px solid red;
+}
+
+.errorText {
+  color: red;
+  font-weight: bold;
 }
