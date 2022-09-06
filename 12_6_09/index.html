@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My text</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <form name="user" class="form">
+      <h3>Add new user</h3>
+      <div>
+        <input
+          class="field"
+          name="name"
+          type="text"
+          placeholder="Name Surname"
+        />
+      </div>
+      <div>
+        <input class="field" name="age" type="number" placeholder="Your age" />
+      </div>
+      <div>
+        <p>Select gender:</p>
+        <label>
+          Female
+          <input name="gender" value="female" type="radio" />
+        </label>
+        <label>
+          Male
+          <input name="gender" value="male" type="radio" />
+        </label>
+      </div>
+      <div>
+        <input
+          class="field"
+          name="address"
+          type="text"
+          placeholder="Set your address"
+        />
+      </div>
+      <button type="submit">Save</button>
+    </form>
+    <div id="usersList" class="usersList"></div>
+  </body>
+  <script src="./index.js"></script>
+</html>
