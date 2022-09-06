@@ -30,8 +30,13 @@ form.elements["gender"].forEach((item) => {
 });
 
 form.elements["comment"].addEventListener("input", function (event) {
+  event.preventDefault();
+  console.log(event.preventDefault);
   form.querySelector("#commentLength").textContent = this.value.length;
-  if (this.value.length >= 4) {
-    this.setAttribute("disabled", "");
+});
+
+form.elements["comment"].addEventListener("keypress", function (event) {
+  if (this.value.length >= 5) {
+    event.preventDefault();
   }
 });

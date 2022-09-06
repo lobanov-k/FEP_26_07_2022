@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My text</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <form id="shipment" class="form" name="shipment">
+      <div class="fieldWrapper">
+        <input
+          class="field"
+          name="name"
+          placeholder="Firstname Lastname"
+          type="text"
+        />
+      </div>
+      <div class="fieldWrapper">
+        <input class="field" name="address" placeholder="Address" type="text" />
+      </div>
+      <button type="submit">Send</button>
+    </form>
+    <!-- TODOLIST -->
+    <h2>ToDo List</h2>
+    <hr />
+    <div class="todoList">
+      <form id="todo" class="form" name="todo">
+        <div class="fieldWrapper">
+          <input
+            name="task"
+            class="field"
+            type="text"
+            placeholder="To do something"
+          />
+        </div>
+        <button type="submit">Add Task</button>
+      </form>
+      <select>
+        <option>All</option>
+        <option>In progress</option>
+        <option>Done</option>
+      </select>
+      <div class="taskList"></div>
+    </div>
+    <!-- TODOLIST -->
+  </body>
+  <script src="./index.js"></script>
+</html>
