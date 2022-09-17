@@ -1,0 +1,56 @@
+body {
+  display: block;
+}
+
+.slider {
+  position: relative;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.content {
+  margin-top: 20px;
+}
+
+img {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+}
+
+button {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  margin: 35px 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 40px #f137a6 inset, 0 0 0 0 #f137a6;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  box-shadow: 0 0 10px 0 #f137a6 inset, 0 0 10px 4px #f137a6;
+}
+
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+}
+
+.dot {
+  display: inline-block;
+  margin: 20px 10px 0;
+  width: 10px;
+  height: 10px;
+  border: 2px solid grey;
+  border-radius: 50%;
+  outline: none;
+}
+
+.dot_active {
+  background-color: black;
+}
