@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body id="body">
+    <div class="wrapper">
+      <div class="user-block">
+        <h3>Add new user</h3>
+        <form action="" id="user-form" class="user-form">
+          <input
+            name="name"
+            type="text"
+            placeholder="Enter first- and second name"
+            required
+          />
+          <input name="age" type="text" placeholder="Enter age" required />
+          <button id="save-button" type="submit">Save</button>
+        </form>
+      </div>
+
+      <div class="buttons-block">
+        <button id="newUser-button">New user</button>
+      </div>
+
+      <div class="car-block">
+        <h3>Add new car</h3>
+        <form action="" id="car-form" class="car-form">
+          <input name="brand" type="text" placeholder="Car's brand" required />
+          <input name="model" type="text" placeholder="Car's model" required />
+          <input name="year" type="text" placeholder="Car's year" required />
+          <input
+            name="country"
+            type="text"
+            placeholder="Car's country"
+            required
+          />
+          <button id="addCar-button" type="submit" disabled>Add car</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="./index.js"></script>
+</html>
