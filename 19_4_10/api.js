@@ -27,3 +27,8 @@ const updateArticle = ({ id, title, text }) =>
       "Content-type": "application/json; charset=UTF-8",
     },
   }).then((response) => response.json());
+
+const deleteArticle = ({ id }) =>
+  fetch(`${API_URL}/${id}`, {
+    method: "DELETE",
+  }).then((response) => response.json());

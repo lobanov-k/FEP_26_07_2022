@@ -10,8 +10,6 @@ const avatarContainer = document.getElementById("avatar");
 // ============= ARTICLE =============
 const form = document.forms.articleForm;
 const articlesList = document.querySelector(".articlesList");
-const EDIT_ACTION = "EDIT";
-const DELETE_ACTION = "DELETE";
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -23,20 +21,7 @@ form.addEventListener("submit", function (event) {
     title,
     text,
   }).then(({ id, text, title }) => {
-    const div = document.createElement("div");
-    div.setAttribute("data-id", id);
-
-    div.innerHTML = `
-      <div class="articleContent">
-        <h5 class="articleTitle">${title}</h5>
-        <p class="articleText">${text}</p>
-      </div>
-      <div>
-        <button data-action="${EDIT_ACTION}" class="btn btn-primary">Edit</button>
-        <button data-action="${DELETE_ACTION}" class="btn btn-danger">Delete</button>
-      </div>
-    `;
-
+    const div = createArticleEl({ id, text, title });
     articlesList.append(div);
   });
 });
@@ -80,11 +65,33 @@ articlesList.addEventListener("click", function (event) {
           const title = form.title.value;
           const text = form.text.value;
 
-          updateArticle({
-            id: articleId,
-            title,
-            text,
-          }).then((data) => console.log(data));
+          // updateArticle({
+          //   id: articleId,
+          //   title,
+          //   text,
+          // }).then(({ id, title, text }) => {
+          //   const newArticleEl = createArticleEl({ id, title, text });
+          //   articlesList.replaceChild(articleWrapper, newArticleEl);
+          // });
+
+          const newArticleEl = createArticleEl({ articleId, title, text });
+          articlesList.replaceChild(
+            newArticleEl,
+            articlesList.querySelector(`[data-id="${articleId}"]`)
+          );
         });
+      break;
+
+    case DELETE_ACTION:
+      const deleteId = event.target
+        .closest("[data-id]")
+        .getAttribute("data-id");
+      deleteArticle({ id: deleteId }).then(() => {
+        event.target.closest("[data-id]").remove();
+      });
+      break;
+
+    default:
+      break;
   }
 });
