@@ -1,18 +1,28 @@
 function getCarHtml(car) {
-  const div = document.createElement("div");
-  div.classList.add("card");
+  const div = document.createElement('div');
+  div.classList.add('card');
 
   div.innerHTML = `
     <div class="card-body">
       <p>${car.brand}, ${car.year}. Power: ${car.hp} hP</p>
       <div class="select-wrapper"></div>
     </div>`;
+
+  // ----------Sold message for car-----------
+  if (car.owner !== null) {
+    const soldMessage = document.createElement('p');
+    soldMessage.classList.add('p-3');
+    soldMessage.textContent = 'Sold out';
+    soldMessage.style.color = 'red';
+    div.append(soldMessage);
+  }
+  // -----------------------------------------
   return div;
 }
 
 function getUserHtml(user) {
-  const div = document.createElement("div");
-  div.classList.add("card");
+  const div = document.createElement('div');
+  div.classList.add('card');
 
   div.innerHTML = `
     <div class="card-body">
@@ -20,7 +30,7 @@ function getUserHtml(user) {
       <p>${user.age} y/o</p>
       <p>Cars: ${user
         .getCars()
-        .reduce((acc, item) => `${acc ? acc + ", " : ""}${item.brand}`, "")}
+        .reduce((acc, item) => `${acc ? acc + ', ' : ''}${item.brand}`, '')}
       </p>
       <div class="select-wrapper"></div>
     </div>
@@ -29,27 +39,35 @@ function getUserHtml(user) {
 }
 
 /**
- * Create select ti bind some object to another
+ * Create select to bind some object to another
  * @param {function} callback - callback to be called on select changes
  * @param {[{text, disabled: boolean, instance: object, id}]} options
  */
 function appendSelectHtml(callback, options, parentEl, defaultOptionName) {
-  const selectEl = document.createElement("select");
-  selectEl.classList.add("form-select");
+  const selectEl = document.createElement('select');
+  selectEl.classList.add('form-select');
 
   selectEl.innerHTML += `<option value="">${defaultOptionName}</option>`;
 
   options.forEach(({ text, disabled }, index) => {
     selectEl.innerHTML += `<option value="${index}" ${
-      disabled ? "disabled" : ""
+      disabled ? 'disabled' : ''
     }>${text}</option>`;
   });
 
   parentEl.append(selectEl);
 
   // on select call callback with instance
-  selectEl.addEventListener("change", function (event) {
+  selectEl.addEventListener('change', function (event) {
     callback(options[event.target.value].instance);
+
+    // --------------------------------------------
+    options.forEach((item) => {
+      if (item.instance.owner !== null) {
+        item.disabled = true;
+      }
+    });
+    // --------------------------------------------
   });
 
   return selectEl;
