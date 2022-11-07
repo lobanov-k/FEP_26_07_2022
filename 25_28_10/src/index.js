@@ -21,31 +21,31 @@ const carsOptions = cars.map((item) => {
   };
 });
 
-const renderUsers = () => {
-  usersBlock.innerHTML = "";
+const renderCars = () => {
+  carsBlock.innerHTML = "";
 
-  users.forEach((item) => {
-    usersBlock.appendChild(getUserHtml(item));
+  cars.forEach((item) => {
+    carsBlock.appendChild(getCarHtml(item));
   });
 };
 
-cars.forEach((item) => {
-  carsBlock.appendChild(getCarHtml(item));
+users.forEach((item) => {
+  usersBlock.appendChild(getUserHtml(item));
 
   const selectorWrapper =
-    carsBlock.children[carsBlock.children.length - 1].querySelector(
+    usersBlock.children[usersBlock.children.length - 1].querySelector(
       ".select-wrapper"
     );
 
   appendSelectHtml(
-    item.setOwner.bind(item),
-    usersOptions,
+    item.setCar.bind(item),
+    carsOptions,
     selectorWrapper,
-    "no owner"
+    "no car"
   );
 });
 
 // перехватываем change, чтобы знать когда произошли изменения и надо перерендерить пользователей
-carsBlock.addEventListener("change", renderUsers);
+usersBlock.addEventListener("change", renderCars);
 
-renderUsers();
+renderCars();
