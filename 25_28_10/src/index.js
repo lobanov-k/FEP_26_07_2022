@@ -1,5 +1,5 @@
-const usersBlock = document.getElementById("pills-users");
-const carsBlock = document.getElementById("pills-cars");
+const usersBlock = document.getElementById('pills-users');
+const carsBlock = document.getElementById('pills-cars');
 
 const usersOptions = users.map((item) => {
   const { name, age } = item;
@@ -22,30 +22,39 @@ const carsOptions = cars.map((item) => {
 });
 
 const renderUsers = () => {
-  usersBlock.innerHTML = "";
+  usersBlock.innerHTML = '';
 
   users.forEach((item) => {
     usersBlock.appendChild(getUserHtml(item));
+
+    // -------------------------------------------------------
+    const selectorWrapper =
+      usersBlock.children[usersBlock.children.length - 1].querySelector(
+        '.select-wrapper'
+      );
+
+    appendSelectHtml(
+      item.setCar.bind(item),
+      carsOptions,
+      selectorWrapper,
+      'choose a car'
+    );
+    // -------------------------------------------------------
   });
 };
 
-cars.forEach((item) => {
-  carsBlock.appendChild(getCarHtml(item));
+const renderCars = () => {
+  carsBlock.innerHTML = '';
 
-  const selectorWrapper =
-    carsBlock.children[carsBlock.children.length - 1].querySelector(
-      ".select-wrapper"
-    );
-
-  appendSelectHtml(
-    item.setOwner.bind(item),
-    usersOptions,
-    selectorWrapper,
-    "no owner"
-  );
+  cars.forEach((item) => {
+    carsBlock.appendChild(getCarHtml(item));
+  });
+};
+// перехватываем change, чтобы знать когда произошли изменения и надо перерендерить пользователей и машины
+usersBlock.addEventListener('change', function () {
+  renderUsers();
+  renderCars();
 });
 
-// перехватываем change, чтобы знать когда произошли изменения и надо перерендерить пользователей
-carsBlock.addEventListener("change", renderUsers);
-
 renderUsers();
+renderCars();

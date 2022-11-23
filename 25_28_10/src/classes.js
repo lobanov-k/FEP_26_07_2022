@@ -26,6 +26,11 @@ function User(name, age) {
 
 User.prototype.setCar = function (car, shouldSetToCar = true) {
   if (!Car.prototype.isPrototypeOf(car)) return;
+
+  // ---------------------------------------------------------
+  if (this._cars.includes(car)) return; // не понял, почему машина добавляется дважды, поэтому добавил этот костыль
+  // --------------------------------------------------------
+
   this._cars.push(car);
 
   if (shouldSetToCar) car.setOwner(this);
