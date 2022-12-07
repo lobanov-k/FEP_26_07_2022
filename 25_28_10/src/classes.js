@@ -5,14 +5,18 @@ function Car(brand, year, hp) {
 
   this.id = `car-${Date.now()}`;
 
-  this.owner = null;
+  this._users = [];
 }
 
-Car.prototype.setOwner = function (user) {
+Car.prototype.setUser = function (user, shouldSetToUser = true) {
   if (!User.prototype.isPrototypeOf(user)) return;
-  user.setCar(this, false);
+  this._users.push(user);
 
-  this.owner = user;
+  if (shouldSetToUser) user.setCar(this);
+};
+
+Car.prototype.getUsers = function () {
+  return this._users;
 };
 
 function User(name, age) {
@@ -21,16 +25,12 @@ function User(name, age) {
 
   this.id = `user-${Date.now()}`;
 
-  this._cars = [];
+  this.cars = null;
 }
 
-User.prototype.setCar = function (car, shouldSetToCar = true) {
+User.prototype.setCar = function (car) {
   if (!Car.prototype.isPrototypeOf(car)) return;
-  this._cars.push(car);
+  car.setUser(this, false);
 
-  if (shouldSetToCar) car.setOwner(this);
-};
-
-User.prototype.getCars = function () {
-  return this._cars;
+  this.car = car;
 };

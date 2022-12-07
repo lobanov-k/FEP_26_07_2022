@@ -5,6 +5,10 @@ function getCarHtml(car) {
   div.innerHTML = `
     <div class="card-body">
       <p>${car.brand}, ${car.year}. Power: ${car.hp} hP</p>
+      <p>Owner: ${car
+        .getUsers()
+        .reduce((acc, item) => `${acc ? acc + ", " : ""}${item.name}`, "")}
+      </p>
       <div class="select-wrapper"></div>
     </div>`;
   return div;
@@ -18,10 +22,7 @@ function getUserHtml(user) {
     <div class="card-body">
       <p>${user.name}</p>
       <p>${user.age} y/o</p>
-      <p>Cars: ${user
-        .getCars()
-        .reduce((acc, item) => `${acc ? acc + ", " : ""}${item.brand}`, "")}
-      </p>
+      
       <div class="select-wrapper"></div>
     </div>
   `;
