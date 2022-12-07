@@ -16,7 +16,7 @@ function getUserHtml(user) {
 
   div.innerHTML = `
     <div class="card-body">
-      <p>${user.name}</p>
+      <p class='nameJS'>${user.name}</p>
       <p>${user.age} y/o</p>
       <p>Cars: ${user
         .getCars()
@@ -54,3 +54,52 @@ function appendSelectHtml(callback, options, parentEl, defaultOptionName) {
 
   return selectEl;
 }
+
+const addCarSelect = (cars) => {
+  usersBlock.childNodes.forEach((element) => {
+    let markup = `<select class='selectJS'><option>${cars[0]?.brand}</option><option>${cars[1]?.brand}</option><option>${cars[2]?.brand}</option><option>${cars[3]?.brand}</option></select>`;
+    element.insertAdjacentHTML("beforeend", markup);
+  });
+};
+
+const addSelectedCar = (event) => {
+  const cardBody = event.target.closest("div");
+  const carName = event.target.value;
+  const markup = `<span>${carName}</span>`;
+  cardBody.insertAdjacentHTML("beforeend", markup);
+
+  const currentUser = cardBody.querySelector(".nameJS");
+  const userName = currentUser.innerHTML;
+  let currentUserObj;
+
+  users.filter((e) => {
+    if (userName === e.name) {
+      currentUserObj = e;
+    }
+  });
+
+  cars.filter((e) => {
+    if (carName === e.brand) {
+      e.setOwner(currentUserObj);
+      console.log(e.brand, "has a new owner:", currentUserObj.name);
+
+      const select = usersBlock.querySelector("select");
+      const selectAll = usersBlock.querySelectorAll("select");
+      let markup;
+      usersBlock.childNodes.forEach((element) => {
+        console.log(element);
+        cars.forEach((car) => {
+          if (car.owner === null) {
+            console.log(car);
+            markup += `<option>${car?.brand}</option>`;
+          }
+        });
+        // markup = `<option>${cars[0]?.brand}</option><option>${cars[1]?.brand}</option><option>${cars[2]?.brand}</option>`;
+        select.innerHTML = `<select class='selectJS'>${markup}</select>`;
+        selectAll.forEach((e) => {
+          e.innerHTML = `<select class='selectJS'>${markup}</select>`;
+        });
+      });
+    }
+  });
+};

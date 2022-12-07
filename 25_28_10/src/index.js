@@ -27,6 +27,7 @@ const renderUsers = () => {
   users.forEach((item) => {
     usersBlock.appendChild(getUserHtml(item));
   });
+  addCarSelect(cars);
 };
 
 cars.forEach((item) => {
@@ -49,3 +50,5 @@ cars.forEach((item) => {
 carsBlock.addEventListener("change", renderUsers);
 
 renderUsers();
+
+usersBlock.addEventListener("change", addSelectedCar);
