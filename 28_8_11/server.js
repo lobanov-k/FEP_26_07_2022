@@ -8,9 +8,9 @@ app.use(cors());
 
 app.use(express.json());
 
-app.get("/users", (request, response) => {
+app.get("/users", (req, res) => {
   const users = fs.readFileSync("users.json");
-  return response.send(users);
+  return res.send(users);
 });
 
 app.post("/users", (req, res) => {
@@ -46,6 +46,23 @@ app.delete("/users/:id", (req, res) => {
   } else {
     return res.status(400).send(`Not found user with id ${id}`);
   }
+});
+
+app.put("/users/:id", (req, res) => {
+  const id = parseInt(req.params["id"]);
+
+  const users = fs.readFileSync("users.json");
+  const data = JSON.parse(users);
+
+  const newData = data.map((user) => {
+    if (user.id === id) {
+      user = Object.assign(user, req.body);
+    }
+    return user;
+  });
+
+  fs.writeFileSync("users.json", JSON.stringify(newData));
+  return res.send();
 });
 
 app.listen(3000, () => {
